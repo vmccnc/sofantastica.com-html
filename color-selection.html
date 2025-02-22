@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Выбор цвета и ткани</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 20px; }
+    .fabric-option {
+      display: inline-block;
+      margin: 10px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      width: 120px;
+      background: #fff;
+      transition: border 0.3s;
+    }
+    .fabric-option:hover { border-color: #000; }
+    .fabric-swatch {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 5px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Выберите цвет и ткань</h1>
+  <div id="fabricOptions">
+    <!-- Примеры вариантов ткани -->
+    <div class="fabric-option" data-color="#a0522d">
+      <div class="fabric-swatch" style="background-color: #a0522d;"></div>
+      <div>Коричневый</div>
+    </div>
+    <div class="fabric-option" data-color="#708090">
+      <div class="fabric-swatch" style="background-color: #708090;"></div>
+      <div>Серый</div>
+    </div>
+    <div class="fabric-option" data-color="#2f4f4f">
+      <div class="fabric-swatch" style="background-color: #2f4f4f;"></div>
+      <div>Темно-серый</div>
+    </div>
+    <div class="fabric-option" data-color="#8b0000">
+      <div class="fabric-swatch" style="background-color: #8b0000;"></div>
+      <div>Красный</div>
+    </div>
+    <div class="fabric-option" data-color="#556b2f">
+      <div class="fabric-swatch" style="background-color: #556b2f;"></div>
+      <div>Зелёный</div>
+    </div>
+  </div>
+  <script>
+    // При клике по варианту ткани сохраняем выбранный цвет и возвращаемся на предыдущую страницу
+    document.querySelectorAll('.fabric-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const selectedColor = this.getAttribute('data-color');
+        sessionStorage.setItem("selectedColor", selectedColor);
+        // Читаем параметр return, чтобы знать, куда вернуться (если не указан, переходим на index.html)
+        const params = new URLSearchParams(window.location.search);
+        const returnUrl = params.get('return') || "index.html";
+        window.location.href = returnUrl;
+      });
+    });
+  </script>
+</body>
+</html>

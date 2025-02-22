@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>SOFAntastic – Каталог мебели</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>
+    <h1>SOFAntastic</h1>
+    <p>Найди идеальный диван для твоего дома</p>
+  </header>
+  
+  <div class="container">
+    <!-- Sidebar with Filters -->
+    <aside class="filters">
+      <h3>Фильтры</h3>
+      <button class="clear-filters" id="clearFiltersBtn">Сбросить фильтры</button>
+      <div class="filter-section">
+        <label>Тип товара:</label>
+        <input type="checkbox" name="type" value="divan"> Диваны<br>
+        <input type="checkbox" name="type" value="armchair"> Кресла<br>
+        <input type="checkbox" name="type" value="pouf"> Пуфы<br>
+        <input type="checkbox" name="type" value="corner"> Угловые диваны<br>
+      </div>
+      <div class="filter-section">
+        <label>Форма мебели:</label>
+        <input type="checkbox" name="shape" value="straight"> Прямые<br>
+        <input type="checkbox" name="shape" value="corner"> Угловые<br>
+        <input type="checkbox" name="shape" value="modular"> Модульные<br>
+      </div>
+      <div class="filter-section">
+        <label>Размер:</label>
+        <input type="checkbox" name="size" value="small"> Маленькие (до 140 см)<br>
+        <input type="checkbox" name="size" value="medium"> Средние (140–200 см)<br>
+        <input type="checkbox" name="size" value="large"> Большие (200+ см)<br>
+      </div>
+      <div class="filter-section">
+        <label>Функционал:</label>
+        <input type="checkbox" name="function" value="sleep"> С функцией сна<br>
+        <input type="checkbox" name="function" value="storage"> С отсеком для хранения<br>
+        <input type="checkbox" name="function" value="basic"> Без дополнительного функционала<br>
+      </div>
+      <div class="filter-section">
+        <label>Материал обивки:</label>
+        <input type="checkbox" name="material" value="fabric"> Ткань<br>
+        <input type="checkbox" name="material" value="leather"> Кожа<br>
+        <input type="checkbox" name="material" value="velvet"> Велюр<br>
+        <input type="checkbox" name="material" value="microfiber"> Микрофибра<br>
+      </div>
+      <div class="filter-section">
+        <label>Ценовой диапазон:</label>
+        <input type="checkbox" name="price" value="low"> До 1000 zł<br>
+        <input type="checkbox" name="price" value="mid"> 1000–3000 zł<br>
+        <input type="checkbox" name="price" value="high"> 3000+ zł<br>
+      </div>
+      <div class="filter-section">
+        <label>Цвет (фильтр):</label>
+        <div id="colorSwatches">
+          <span class="color-swatch" data-color="#a0522d" style="background-color: #a0522d;"></span>
+          <span class="color-swatch" data-color="#708090" style="background-color: #708090;"></span>
+          <span class="color-swatch" data-color="#2f4f4f" style="background-color: #2f4f4f;"></span>
+          <span class="color-swatch" data-color="#8b0000" style="background-color: #8b0000;"></span>
+          <span class="color-swatch" data-color="#556b2f" style="background-color: #556b2f;"></span>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Catalog Area -->
+    <main class="catalog">
+      <div class="catalog-controls">
+        <input type="text" id="searchInput" placeholder="Поиск товаров...">
+        <div>
+          <label for="sortSelect">Сортировка:</label>
+          <select id="sortSelect">
+            <option value="price">Цена</option>
+            <option value="popularity">Популярность</option>
+            <option value="newest">Новизна</option>
+          </select>
+        </div>
+        <div class="view-toggle">
+          <label>Вид:</label>
+          <button id="gridViewBtn">Плитка</button>
+          <button id="listViewBtn">Список</button>
+        </div>
+        <!-- Button for global material color selection on main page -->
+        <div class="material-color-selection">
+          <span>Выбранный цвет материала: <span id="selectedColorMainDisplay" style="font-weight: bold;">не выбран</span></span>
+          <button id="chooseColorMainBtn" class="choose-color-btn">Выбрать цвет</button>
+        </div>
+      </div>
+      <div class="products" id="productsContainer">
+        <!-- Product cards will be injected here by index.js -->
+      </div>
+    </main>
+  </div>
+  
+  <!-- Side Panel for Color Selection (Main Page) -->
+  <div id="sidePanelMain" class="side-panel">
+    <span class="close-panel" id="closePanelMainBtn">&times;</span>
+    <h2>Выберите цвет и ткань</h2>
+    <div id="colorOptionsMain">
+      <div class="color-option" data-color="#a0522d">
+        <div class="color-swatch" style="background-color: #a0522d;"></div>
+        <span>Коричневый</span>
+      </div>
+      <div class="color-option" data-color="#708090">
+        <div class="color-swatch" style="background-color: #708090;"></div>
+        <span>Серый</span>
+      </div>
+      <div class="color-option" data-color="#2f4f4f">
+        <div class="color-swatch" style="background-color: #2f4f4f;"></div>
+        <span>Темно-серый</span>
+      </div>
+      <div class="color-option" data-color="#8b0000">
+        <div class="color-swatch" style="background-color: #8b0000;"></div>
+        <span>Красный</span>
+      </div>
+      <div class="color-option" data-color="#556b2f">
+        <div class="color-swatch" style="background-color: #556b2f;"></div>
+        <span>Зелёный</span>
+      </div>
+    </div>
+  </div>
+  
+  <script src="index.js"></script>
+</body>
+</html>

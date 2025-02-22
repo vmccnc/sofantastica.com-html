@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Детали товара</title>
+  <link rel="stylesheet" href="product-detail.css">
+</head>
+<body>
+  <header>
+    <h1>Детали товара</h1>
+  </header>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Вернуться к каталогу</a>
+    <div class="product-image-container">
+      <img id="productImage" src="" alt="Product Image">
+      <div id="imageOverlay" class="image-overlay"></div>
+    </div>
+    <div class="details">
+      <h2 id="productName"></h2>
+      <p id="productDescription"></p>
+      <p id="productDimensions"></p>
+      <p>Материал: <span id="productMaterial"></span></p>
+      <p>Цена: <span id="productPrice"></span> zł</p>
+      <p>Выбранный цвет: <span id="selectedColorDisplay" style="font-weight: bold;">не выбран</span></p>
+      <button class="choose-color-btn" id="chooseColorBtn">Выбрать цвет</button>
+    </div>
+  </div>
+  
+  <!-- Side Panel for Color Selection (Detail Page) -->
+  <div id="sidePanel" class="side-panel">
+    <span class="close-panel" id="closePanelBtn">&times;</span>
+    <h2>Выберите цвет и ткань</h2>
+    <div id="colorOptions">
+      <div class="color-option" data-color="#a0522d">
+        <div class="color-swatch" style="background-color: #a0522d;"></div>
+        <span>Коричневый</span>
+      </div>
+      <div class="color-option" data-color="#708090">
+        <div class="color-swatch" style="background-color: #708090;"></div>
+        <span>Серый</span>
+      </div>
+      <div class="color-option" data-color="#2f4f4f">
+        <div class="color-swatch" style="background-color: #2f4f4f;"></div>
+        <span>Темно-серый</span>
+      </div>
+      <div class="color-option" data-color="#8b0000">
+        <div class="color-swatch" style="background-color: #8b0000;"></div>
+        <span>Красный</span>
+      </div>
+      <div class="color-option" data-color="#556b2f">
+        <div class="color-swatch" style="background-color: #556b2f;"></div>
+        <span>Зелёный</span>
+      </div>
+    </div>
+  </div>
+  
+  <script src="product-detail.js"></script>
+</body>
+</html>
