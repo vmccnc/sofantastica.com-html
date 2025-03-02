@@ -10,7 +10,7 @@ let selectedFabricId = null;
 let finalPrice = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  fetch(`http://localhost:8090/api/furniture/${productId}`)
+  fetch(`https://flato.q11.jvmhost.net/api/furniture/${productId}`)
     .then(response => response.json())
     .then(product => {
       document.getElementById('productName').textContent = product.name;
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error fetching product details:', error));
 
-  fetch('http://localhost:8090/api/fabric')
+  fetch('https://flato.q11.jvmhost.net/api/fabric')
     .then(response => response.json())
     .then(fabrics => {
       const fabricList = document.getElementById('fabricList');
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       finalPrice: finalPrice
     };
 
-    fetch('http://localhost:8090/api/cart', {
+    fetch('https://flato.q11.jvmhost.net/api/cart', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cartItem)
