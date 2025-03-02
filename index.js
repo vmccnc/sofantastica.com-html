@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const applyFiltersBtn = document.getElementById('applyFiltersBtn');
   let maxPriceFromServer = 0;
 
-  // Fetch categories for drop-down
+  // Populate categories dropdown from server endpoint
   fetch('http://localhost:8090/api/furniture/categories')
     .then(response => response.json())
     .then(categories => {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error fetching categories:', error));
 
-  // Fetch max price for slider limits
+  // Fetch max price from server for slider limit
   fetch('http://localhost:8090/api/furniture/maxPrice')
     .then(response => response.json())
     .then(maxPrice => {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error fetching max price:', error));
 
-  // Update slider displays
+  // Update slider displays on input
   minPriceSlider.addEventListener('input', () => {
     minPriceDisplay.textContent = minPriceSlider.value;
   });
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (maxPrice) {
       url += `maxPrice=${maxPrice}&`;
     }
-    url = url.slice(0, -1); // Remove trailing &
+    url = url.slice(0, -1); // Remove trailing '&'
 
     fetch(url)
       .then(response => response.json())
@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Error fetching furniture:', error));
   }
 
+  // Initial load and apply filter on button click
   loadProducts();
   applyFiltersBtn.addEventListener('click', loadProducts);
 });

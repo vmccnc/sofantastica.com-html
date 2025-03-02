@@ -10,25 +10,27 @@
     <h1>SOFAntastic Catalog</h1>
   </header>
   
-  <!-- Filter Controls -->
+  <!-- Horizontal Filter Controls -->
   <div class="filter-controls">
-    <label for="categorySelect">Category:</label>
-    <select id="categorySelect">
-      <option value="">All</option>
-    </select>
-    <br>
-    <label>Price Range:</label>
-    <div class="slider-container">
-      <span>Min: </span>
+    <div class="filter-item">
+      <label for="categorySelect">Category:</label>
+      <select id="categorySelect">
+        <option value="">All</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <label for="minPriceSlider">Min Price:</label>
       <input type="range" id="minPriceSlider" min="0" value="0">
       <span id="minPriceDisplay">0</span> zł
     </div>
-    <div class="slider-container">
-      <span>Max: </span>
+    <div class="filter-item">
+      <label for="maxPriceSlider">Max Price:</label>
       <input type="range" id="maxPriceSlider" min="0" value="0">
       <span id="maxPriceDisplay">0</span> zł
     </div>
-    <button id="applyFiltersBtn">Apply Filters</button>
+    <div class="filter-item">
+      <button id="applyFiltersBtn">Apply Filters</button>
+    </div>
   </div>
   
   <div class="container">
