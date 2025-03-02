@@ -9,7 +9,7 @@ function getQueryParam(name) {
   
   document.addEventListener('DOMContentLoaded', () => {
     // Fetch furniture details
-    fetch(`https://flato.q11.jvmhost.net/api/furniture/${furnitureId}`)
+    fetch(`https://flato.q11.jvmhost.net/api/sofantastic/furniture/${furnitureId}`)
       .then(response => response.json())
       .then(furniture => {
         document.getElementById('furnitureName').textContent = furniture.name;
@@ -21,7 +21,7 @@ function getQueryParam(name) {
       .catch(error => console.error('Error fetching furniture details:', error));
   
     // Fetch popular fabrics
-    fetch('https://flato.q11.jvmhost.net/api/fabric/popular')
+    fetch('https://flato.q11.jvmhost.net/api/sofantastic/fabric/popular')
       .then(response => response.json())
       .then(popularFabrics => {
         const popularList = document.getElementById('popularFabricList');
@@ -30,7 +30,7 @@ function getQueryParam(name) {
           popularList.appendChild(li);
         });
         // Now fetch all fabrics for other fabrics
-        fetch('https://flato.q11.jvmhost.net/api/fabric')
+        fetch('https://flato.q11.jvmhost.net/api/sofantastic/fabric')
           .then(response => response.json())
           .then(allFabrics => {
             // Exclude popular fabrics by id
@@ -68,7 +68,7 @@ function getQueryParam(name) {
         fabricId: selectedFabricId,
         finalPrice: finalPrice
       };
-      fetch('https://flato.q11.jvmhost.net/api/cart', {
+      fetch('https://flato.q11.jvmhost.net/api/sofantastic/cart', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cartItem)
@@ -129,7 +129,7 @@ function getQueryParam(name) {
     li.setAttribute('data-id', fabric.id);
     li.addEventListener('click', () => {
       selectedFabricId = fabric.id;
-      fetch(`https://flato.q11.jvmhost.net/api/price?furnitureId=${furnitureId}&fabricId=${fabric.id}`)
+      fetch(`https://flato.q11.jvmhost.net/api/sofantastic/price?furnitureId=${furnitureId}&fabricId=${fabric.id}`)
         .then(response => response.json())
         .then(priceData => {
           finalPrice = priceData;

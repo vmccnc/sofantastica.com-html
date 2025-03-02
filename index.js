@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let maxPriceFromServer = 0;
 
   // Populate categories dropdown from server endpoint
-  fetch('https://flato.q11.jvmhost.net/api/furniture/categories')
+  fetch('https://flato.q11.jvmhost.net/api/sofantastic/furniture/categories')
     .then(response => response.json())
     .then(categories => {
       categories.forEach(cat => {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => console.error('Error fetching categories:', error));
 
   // Fetch max price from server for slider limit
-  fetch('https://flato.q11.jvmhost.net/api/furniture/maxPrice')
+  fetch('https://flato.q11.jvmhost.net/api/sofantastic/furniture/maxPrice')
     .then(response => response.json())
     .then(maxPrice => {
       maxPriceFromServer = maxPrice;
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const category = categorySelect.value;
     const minPrice = minPriceSlider.value;
     const maxPrice = maxPriceSlider.value;
-    let url = 'https://flato.q11.jvmhost.net/api/furniture?';
+    let url = 'https://flato.q11.jvmhost.net/api/sofantastic/furniture?';
     if (category) {
       url += `category=${encodeURIComponent(category)}&`;
     }
