@@ -9,14 +9,22 @@
   <div class="container">
     <a href="index.html" class="back-link">&larr; Back to Catalog</a>
     <h1 id="furnitureName"></h1>
-    <img id="furnitureImage" src="" alt="Furniture Image">
+    <div class="image-container">
+      <img id="furnitureImage" src="" alt="Furniture Image">
+      <!-- Overlay for selected fabric image -->
+      <div id="fabricOverlay" class="fabric-overlay">
+        <img id="fabricOverlayImg" src="" alt="Selected Fabric">
+      </div>
+    </div>
     <p id="furnitureDescription"></p>
     <p>Base Price: <span id="basePrice"></span> zł</p>
+    <!-- Updated line: no extra "zł" outside the span -->
+    <p>Fabric Price: <span id="fabricPrice">0</span></p>
     <p>Total Price: <span id="totalPrice"></span> zł</p>
     <button id="openFabricBtn">Select Fabric</button>
     <button id="addToCartBtn">Add to Cart</button>
     
-    <!-- Fabric Panel: Popular Fabrics and Other Fabrics -->
+    <!-- Fabric Selection Side Panel -->
     <div id="fabricPanel" class="fabric-panel">
       <h2>Popular Fabrics</h2>
       <ul id="popularFabricList"></ul>
