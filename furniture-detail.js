@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error fetching furniture details:', error));
 
+      // "Go to 3D" button
+  const go3dBtn = document.getElementById('go3dBtn');
+  go3dBtn.addEventListener('click', () => {
+    // Navigate to 3d.html
+    window.location.href = '3d.html';
+  });
+  
   // Fetch popular fabrics from the server
   fetch('https://flato.q11.jvmhost.net/api/sofantastic/fabric/popular')
     .then(response => response.json())

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Model Viewer - Armchair</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #buttons {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      background: #f2f2f2;
+    }
+    #sceneContainer {
+      width: 100vw;
+      height: calc(100vh - 60px); /* subtract button bar height */
+      background: #ccc;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Button bar -->
+  <div id="buttons">
+    <button id="downloadLibraryBtn">Download Library</button>
+    <button id="show3dBtn">Show 3D</button>
+  </div>
+
+  <!-- Container where we place the 3D scene -->
+  <div id="sceneContainer"></div>
+
+  <script>
+    let librariesLoaded = false;
+
+    // Called when user clicks "Download Library"
+    document.getElementById('downloadLibraryBtn').addEventListener('click', () => {
+      loadAllLibraries(() => {
+        librariesLoaded = true;
+        alert('Libraries downloaded successfully!');
+      });
+    });
+
+    // Called when user clicks "Show 3D"
+    document.getElementById('show3dBtn').addEventListener('click', () => {
+      if (!librariesLoaded) {
+        alert('Please click "Download Library" first!');
+        return;
+      }
+      show3DScene();
+    });
+
+    // Dynamically load Three.js, fflate (local copy), FBXLoader, and OrbitControls from CDNs and local file
+    function loadAllLibraries(onComplete) {
+      loadScript('https://cdn.jsdelivr.net/npm/three@0.136/build/three.min.js', () => {
+        // Load local copy of fflate installed via npm
+       
+          loadScript('https://cdn.jsdelivr.net/npm/three@0.136/examples/js/loaders/FBXLoader.js', () => {
+            loadScript('https://cdn.jsdelivr.net/npm/three@0.136/examples/js/controls/OrbitControls.js', () => {
+              onComplete();
+          
+          });
+        });
+      });
+    }
+
+    // Helper to load a single script
+    function loadScript(src, onLoad) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = onLoad;
+      script.onerror = () => alert(`Failed to load ${src}`);
+      document.head.appendChild(script);
+    }
+
+    // Called after libraries are loaded and user clicks "Show 3D"
+    function show3DScene() {
+      // Create scene, camera, and renderer
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xaaaaaa);
+
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        1,
+        1000
+      );
+      camera.position.set(100, 200, 300);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight - 60); // subtract button bar height
+      const container = document.getElementById('sceneContainer');
+      container.innerHTML = ''; // clear any previous content
+      container.appendChild(renderer.domElement);
+
+      // Add lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(100, 200, 100);
+      scene.add(directionalLight);
+
+      // Add OrbitControls for user interaction
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.update();
+
+      // Load the FBX model from local file path
+      const fbxLoader = new THREE.FBXLoader();
+      // If possible, copy "armchair.fbx" into your project folder and use a relative path:
+      // const modelUrl = "armchair.fbx";
+      // Otherwise, if you want to try file:// (note: this might be blocked by your browser):
+      const modelUrl = "http://localhost:8090/api/sofantastic/model/armchair";
+      fbxLoader.load(
+        modelUrl,
+        (object) => {
+          scene.add(object);
+        },
+        undefined,
+        (error) => {
+          console.error('An error occurred while loading the model:', error);
+        }
+      );
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / (window.innerHeight - 60);
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight - 60);
+      });
+    }
+  </script>
+</body>
+</html>
