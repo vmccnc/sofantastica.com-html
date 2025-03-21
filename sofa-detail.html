@@ -12,16 +12,24 @@
     <img id="sofaImage" src="" alt="Sofa Image">
     <p id="sofaDescription"></p>
     <p>Base Price: <span id="sofaPrice"></span> zł</p>
+    
     <h2>Production Objects for this Sofa</h2>
     <div id="productionObjects"></div>
+    
     <h3>Add Production Object</h3>
     <form id="prodObjectForm">
+      <label for="nameOfElement">Element Name:</label>
+      <input type="text" id="nameOfElement" required>
+      
       <label for="dspCount">DSP Elements Count:</label>
       <input type="number" id="dspCount" required>
+      
       <label for="dimensions">Dimensions (e.g., 120x80x40):</label>
       <input type="text" id="dimensions" required>
+      
       <button type="submit">Add Production Object</button>
     </form>
+    
     <nav>
       <a href="production.html">Go to Production Planning</a>
     </nav>

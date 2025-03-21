@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:8090/api/sofantastic/fabric')
+    fetch('https://flato.q11.jvmhost.net/api/sofantastic/fabric')
       .then(response => response.json())
       .then(fabrics => {
         const fabricOptions = document.getElementById('fabricOptions');

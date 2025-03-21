@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const addOrderBtn = document.getElementById('addOrderBtn');
   const calculateBtn = document.getElementById('calculateBtn');
   const planResultsDiv = document.getElementById('planResults');
+  const breakdownListDiv = document.getElementById('breakdownList');
+  const breakdownTotalDiv = document.getElementById('breakdownTotal');
   
-  // Array to hold available sofas loaded from server
+  // Array to hold available sofas from server
   let sofas = [];
 
-  // Load available sofas for the dropdown
+  // Load available sofas for dropdown
   function loadSofas() {
     fetch('https://flato.q11.jvmhost.net/api/sofantastic/sofa')
       .then(response => response.json())
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   loadSofas();
 
-  // Add a new order row
+  // Add new order row
   function addOrderRow() {
     const div = document.createElement('div');
     div.className = 'order';
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       orders.push({ sofaId, quantity });
     });
 
+    // Existing Production Plan calculation (per sofa)
     fetch('https://flato.q11.jvmhost.net/api/sofantastic/production/plan', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -61,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(result => {
         planResultsDiv.innerHTML = "<h2>Production Plan</h2>";
         let overallTotal = 0;
-        // List each production plan item with sofa name, dimensions and required DSP elements
         result.forEach(item => {
           const div = document.createElement('div');
           div.className = 'plan-item';
@@ -73,13 +75,30 @@ document.addEventListener('DOMContentLoaded', () => {
           planResultsDiv.appendChild(div);
           overallTotal += item.totalDSPElements;
         });
-        // Below, show a summary list (each distinct production element: dimensions and amount)
-        // For simplicity, we assume each production plan item represents a unique production element.
         const summaryDiv = document.createElement('div');
         summaryDiv.className = 'summary';
-        summaryDiv.innerHTML = `<p>Total Required Elements: ${overallTotal}</p>`;
+        summaryDiv.innerHTML = `<p>Total Required Elements (Plan): ${overallTotal}</p>`;
         planResultsDiv.appendChild(summaryDiv);
       })
       .catch(error => console.error('Error calculating production plan:', error));
+
+    // New: Production Plan2 - breakdown by production object dimensions
+    fetch('https://flato.q11.jvmhost.net/api/sofantastic/production/breakdown', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orders)
+    })
+      .then(response => response.json())
+      .then(breakdown => {
+        breakdownListDiv.innerHTML = "";
+        breakdown.breakdown.forEach(item => {
+          const p = document.createElement('p');
+          p.className = 'breakdown-item';
+          p.textContent = `${item.dimensions} - ${item.totalItems} items`;
+          breakdownListDiv.appendChild(p);
+        });
+        breakdownTotalDiv.innerHTML = `<p>Total Required Elements (Breakdown): ${breakdown.overallTotal}</p>`;
+      })
+      .catch(error => console.error('Error calculating production breakdown:', error));
   });
 });

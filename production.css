@@ -43,3 +43,13 @@ button {
   margin-top: 20px;
   font-weight: bold;
 }
+
+/* Production Plan2 styles */
+#breakdownResults {
+  margin-top: 20px;
+  border-top: 2px solid #666;
+  padding-top: 10px;
+}
+.breakdown-item {
+  margin: 5px 0;
+}
