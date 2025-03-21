@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+label {
+  font-weight: bold;
+}
+input, textarea {
+  padding: 5px;
+  font-size: 14px;
+}
+button {
+  padding: 10px;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#sofaList {
+  margin-top: 20px;
+}
+nav a {
+  text-decoration: none;
+  color: #3498db;
+  margin: 0 5px;
+}
