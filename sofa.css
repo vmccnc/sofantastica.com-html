@@ -14,6 +14,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 20px;
 }
 label {
   font-weight: bold;
@@ -32,6 +33,16 @@ button {
 }
 #sofaList {
   margin-top: 20px;
+}
+.sofa-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sofa-item:hover {
+  background: #eef;
 }
 nav a {
   text-decoration: none;
