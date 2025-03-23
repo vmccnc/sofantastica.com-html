@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to load existing sofas
   function loadSofas() {
-    fetch('https://flato.q11.jvmhost.net/api/sofantastic/sofa')
+    fetch('http://localhost:8090/api/sofantastic/sofa')
       .then(response => response.json())
       .then(sofas => {
         sofaListDiv.innerHTML = "";
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       basePrice: parseFloat(document.getElementById('basePrice').value)
     };
 
-    fetch('https://flato.q11.jvmhost.net/api/sofantastic/sofa', {
+    fetch('http://localhost:8090/api/sofantastic/sofa', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newSofa)

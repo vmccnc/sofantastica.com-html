@@ -10,7 +10,7 @@ let fabricPrice = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Fetch furniture details from the server
-  fetch(`https://flato.q11.jvmhost.net/api/sofantastic/furniture/${furnitureId}`)
+  fetch(`http://localhost:8090/api/sofantastic/furniture/${furnitureId}`)
     .then(response => response.json())
     .then(furniture => {
       document.getElementById('furnitureName').textContent = furniture.name;
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Fetch popular fabrics from the server
-  fetch('https://flato.q11.jvmhost.net/api/sofantastic/fabric/popular')
+  fetch('http://localhost:8090/api/sofantastic/fabric/popular')
     .then(response => response.json())
     .then(popularFabrics => {
       const popularList = document.getElementById('popularFabricList');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         popularList.appendChild(li);
       });
       // Fetch all fabrics for "Other Fabrics"
-      fetch('https://flato.q11.jvmhost.net/api/sofantastic/fabric')
+      fetch('http://localhost:8090/api/sofantastic/fabric')
         .then(response => response.json())
         .then(allFabrics => {
           const popularIds = popularFabrics.map(f => f.id);
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fabricId: selectedFabricId,
       finalPrice: finalPrice
     };
-    fetch('https://flato.q11.jvmhost.net/api/sofantastic/cart', {
+    fetch('http://localhost:8090/api/sofantastic/cart', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cartItem)
@@ -139,7 +139,7 @@ function createFabricListItem(fabric) {
     // Update Fabric Price with both price and fabric name
     document.getElementById('fabricPrice').textContent = fabric.priceModifier + " zł, " + fabric.name;
     // Fetch final price from server
-    fetch(`https://flato.q11.jvmhost.net/api/sofantastic/price?furnitureId=${furnitureId}&fabricId=${fabric.id}`)
+    fetch(`http://localhost:8090/api/sofantastic/price?furnitureId=${furnitureId}&fabricId=${fabric.id}`)
       .then(response => response.json())
       .then(priceData => {
         finalPrice = priceData;
