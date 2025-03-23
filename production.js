@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load available sofas for dropdown
   function loadSofas() {
-    fetch('http://localhost:8090/api/sofantastic/sofa')
+    fetch('https://flato.q11.jvmhost.net/api/sofantastic/sofa')
       .then(response => response.json())
       .then(data => {
         sofas = data;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Existing Production Plan calculation (per sofa)
-    fetch('http://localhost:8090/api/sofantastic/production/plan', {
+    fetch('https://flato.q11.jvmhost.net/api/sofantastic/production/plan', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(orders)
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Error calculating production plan:', error));
 
     // New: Production Plan2 - breakdown by production object dimensions
-    fetch('http://localhost:8090/api/sofantastic/production/breakdown', {
+    fetch('https://flato.q11.jvmhost.net/api/sofantastic/production/breakdown', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(orders)
