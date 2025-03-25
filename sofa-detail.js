@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Create the cart item object using sofa details and selected fabric details.
     const cartItem = {
-      userId: "exampleUser", // update with actual user id
+      userId: 1, // update with actual user id
       furnitureId: parseInt(sofaId),
       furnitureName: sofaNameElem.textContent,
       furnitureUrl: sofaImageElem.src,

@@ -5,6 +5,8 @@ function getQueryParam(name) {
 
 const furnitureId = getQueryParam('id');
 let selectedFabricId = null;
+let selectedFabricName = "";
+let selectedTextureUrl = "";
 let finalPrice = null;
 let fabricPrice = 0;
 
@@ -21,10 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error fetching furniture details:', error));
 
-      // "Go to 3D" button
+  // "Go to 3D" button
   const go3dBtn = document.getElementById('go3dBtn');
   go3dBtn.addEventListener('click', () => {
-    // Navigate to 3d.html
     window.location.href = '3d.html';
   });
   
@@ -68,11 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Please select a fabric first.');
       return;
     }
-    const userId = 1; // Demo user
+    const userId = "1"; // Demo user (as string)
+    // Now include all required fields
     const cartItem = {
       userId: userId,
       furnitureId: parseInt(furnitureId),
+      furnitureName: document.getElementById('furnitureName').textContent,
+      furnitureUrl: document.getElementById('furnitureImage').src,
       fabricId: selectedFabricId,
+      fabricName: selectedFabricName,
+      fabricUrl: selectedTextureUrl,
       finalPrice: finalPrice
     };
     fetch('https://flato.q11.jvmhost.net/api/sofantastic/cart', {
@@ -136,7 +142,10 @@ function createFabricListItem(fabric) {
   li.addEventListener('click', () => {
     selectedFabricId = fabric.id;
     fabricPrice = fabric.priceModifier;
-    // Update Fabric Price with both price and fabric name
+    // Set the additional fabric fields
+    selectedFabricName = fabric.name;
+    selectedTextureUrl = fabric.textureUrl;
+    // Update Fabric Price display with both price and fabric name
     document.getElementById('fabricPrice').textContent = fabric.priceModifier + " zł, " + fabric.name;
     // Fetch final price from server
     fetch(`https://flato.q11.jvmhost.net/api/sofantastic/price?furnitureId=${furnitureId}&fabricId=${fabric.id}`)
