@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Catalog - SOFAntastic</title>
-  <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Modeling & Game Development</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>SOFAntastic Catalog</h1>
-    <nav>
-      <a href="production.html">Production Preparation</a> |
-      <a href="cart.html">Go to Cart</a>
-    </nav>
-  </header>
-  
-  <!-- Horizontal Filter Controls -->
-  <div class="filter-controls">
-    <div class="filter-item">
-      <label for="categorySelect">Category:</label>
-      <select id="categorySelect">
-        <option value="">All</option>
-      </select>
-    </div>
-    <div class="filter-item">
-      <label for="minPriceSlider">Min Price:</label>
-      <input type="range" id="minPriceSlider" min="0" value="0">
-      <span id="minPriceDisplay">0</span> zł
-    </div>
-    <div class="filter-item">
-      <label for="maxPriceSlider">Max Price:</label>
-      <input type="range" id="maxPriceSlider" min="0" value="0">
-      <span id="maxPriceDisplay">0</span> zł
-    </div>
-    <div class="filter-item">
-      <button id="applyFiltersBtn">Apply Filters</button>
-    </div>
-  </div>
-  
-  <div class="container">
-    <div id="productsContainer" class="products">
-      <!-- Product cards will be loaded here -->
-    </div>
-  </div>
-  <script src="index.js"></script>
+    <section id="about">
+        <h1>About Us</h1>
+        <p>Hello,
+        We are based near Chicago and would be pleased to develop 3D models of your sofas or other products.
+        Our team has extensive experience in creating accurate, high-quality 3D visualizations tailored to manufacturers’ needs.</p>
+    </section>
+
+    <section id="videos">
+        <h2>Video Showcase</h2>
+        <div class="video-grid">
+            <iframe src="https://www.youtube.com/embed/M39ddnBpQ_M" title="Video 1" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/DsMbQPRTWkw" title="Video 2" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/-INVK0tgAY0" title="Video 3" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/nQfI0FCwg-w" title="Video 4" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="game">
+        <h2>Game</h2>
+        <div class="video-grid">
+            <iframe src="https://www.youtube.com/embed/M5Lf96_zjFY" title="Game Video 1" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/bVov4v85aiA" title="Game Video 2" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/FgEEwiardnA" title="Game Video 3" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/2SV9QJxLKoY" title="Game Video 4" allowfullscreen></iframe>
+        </div>
+        <div class="instructions">
+            <p>In order to play our game, you need to:</p>
+            <ol>
+                <li>Install the Unreal Engine program</li>
+                <li>Download the archive with the game</li>
+                <li>Unzip the archive</li>
+                <li>There will be a file with the Unreal Engine icon, run it.</li>
+            </ol>
+            <a href="https://drive.google.com/drive/folders/1BQlXBotNvD2CV4kCb_B17R6VhmcMJ-Lt" class="download-btn">Download the Game</a>
+        </div>
+    </section>
+
+    <section id="team">
+        <h2>Meet the Team</h2>
+        <ul>
+            <li>Vladimir Kolyadchik - Marketing Director</li>
+            <li>Dmtro Prokopenko – Product Owner</li>
+            <li>Tatyana and Anastasia – Project Managers</li>
+            <li>Fedor – Game Designer</li>
+            <li>Ilya and Vova – Unreal Engine Developers</li>
+            <li>Vera, Pavel, and Anastasiya – 3D Developers</li>
+        </ul>
+    </section>
+
+    <section id="contacts">
+        <h2>Contacts</h2>
+        <p>Marketing Director<br>
+        Vladimir Kolyadchik<br>
+        +1 773 516 7582<br>
+        Chicago</p>
+    </section>
 </body>
 </html>
