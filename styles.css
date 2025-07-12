@@ -62,18 +62,18 @@ ul {
     padding: 0;
 }
 
-footer {
+header {
     background: #333;
     color: #fff;
     text-align: center;
     padding: 20px;
 }
 
-.footer-nav {
+.nav-buttons {
     margin-bottom: 10px;
 }
 
-.footer-nav a {
+.nav-buttons a {
     display: inline-block;
     margin: 0 5px;
     padding: 8px 12px;
@@ -83,9 +83,17 @@ footer {
     border-radius: 4px;
 }
 
-.footer-nav a:hover {
+.nav-buttons a:hover {
     background: #555;
 }
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
 
 footer a {
     color: #fff;
